@@ -99,10 +99,9 @@ td {
 
 <table>
 <tr>
-    <th rowspan="2">요일</th>
-    <th rowspan="1">출근</th>
-    <th rowspan="1">퇴근</th>
-    <th rowspan="2">일 근무</th>
+    <th>요일</th>
+    <th>근무 시간</th>
+    <th>일 근무</th>
 </tr>
 
 <script>
@@ -114,10 +113,10 @@ document.write(days.map(d => `
     <td>
         <div class="time-wrap">
             <div class="time-box">
-                <input class="time-input" maxlength="5" data-day="${d}" data-type="start">
+                <input class="time-input" maxlength="5" placeholder="08:00" data-day="${d}" data-type="start">
             </div>
             <div class="time-box">
-                <input class="time-input" maxlength="5" data-day="${d}" data-type="end">
+                <input class="time-input" maxlength="5" placeholder="17:00" data-day="${d}" data-type="end">
             </div>
         </div>
     </td>
@@ -190,6 +189,7 @@ inputs.forEach(input => {
     });
 });
 
+// 저장값 복원 + 기본값
 const saved = JSON.parse(localStorage.getItem("workTime"));
 inputs.forEach((input, i) => {
     input.value = saved?.[i] || (input.dataset.type === "start" ? "08:00" : "17:00");
@@ -199,4 +199,3 @@ calculate();
 </script>
 </body>
 </html>
-
